@@ -6,8 +6,10 @@ class Config(object):
     DEBUG = False
     TESTING = False
     API_KEY = os.environ["API_KEY"]
-    REDDIT_USERNAME = os.environ["REDDIT_USERNAME"]
-    REDDIT_PASSWORD = os.environ["REDDIT_PASSWORD"]
+    USERNAME = os.environ["REDDIT_USERNAME"]
+    PASSWORD = os.environ["REDDIT_PASSWORD"]
+    CLIENT_ID = os.environ["CLIENT_ID"]
+    SECRET_KEY = os.environ["SECRET_KEY"]
 
 class ProductionConfig(Config):
     DEBUG = False
