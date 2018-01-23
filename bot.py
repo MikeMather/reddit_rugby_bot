@@ -59,7 +59,7 @@ def main():
             game["start_time"] = start_time
             game["venue"] = match["venue"]["name"] + ", " + match["venue"]["city_name"]
             game["round"] = match["sport_event_context"]["stage"]["round"]
-
+            game["url"] = crawlerUrl #To be changed
 
             if config.DEBUG:
                 print(game)
