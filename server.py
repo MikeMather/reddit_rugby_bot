@@ -1,6 +1,5 @@
 from os import environ
-from flask import Flask
-from scheduler import main
+from flask import Flasks
 
 app = Flask(__name__)
 app.run(host='0.0.0.0', port=environ.get('PORT'))
