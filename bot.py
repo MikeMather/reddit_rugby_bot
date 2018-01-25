@@ -19,9 +19,9 @@ def formatTeamName(team):
 
 def main():
 
-    DEV = True
+    DEV = os.environ["DEV"]
 
-    if DEV:
+    if DEV=="True":
         config = DevelopmentConfig()
         today = datetime.strptime("2018-02-17", "%Y-%m-%d")
     else:
