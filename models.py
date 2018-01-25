@@ -24,5 +24,5 @@ class Match(Base):
                                                self.match_round,
                                                self.venue)
 
-#engine = create_engine('sqlite:///:matches-dev.db:', echo=False)
-#Base.metadata.create_all(engine)
+engine = create_engine('postgresql:///matches')
+Base.metadata.create_all(engine)

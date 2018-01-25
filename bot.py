@@ -1,6 +1,6 @@
 import requests
 import pytz
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 from config import *
 from models import Match
@@ -8,6 +8,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import re
 from RedditBot import RedditBot
+import time
 
 
 def formatTeamName(team):
@@ -22,20 +23,15 @@ def main():
 
     if DEV:
         config = DevelopmentConfig()
-        today = datetime.strptime("2018-02-23", "%Y-%m-%d")
-        engine = create_engine('sqlite:///:matches-dev.db:', echo=False)
-        Session = sessionmaker(bind=engine)
-        session = Session()
-        session.query(Match).delete()
-
+        today = datetime.strptime("2018-02-17", "%Y-%m-%d")
     else:
         config = ProductionConfig()
         today = datetime.now()
-        engine = create_engine('sqlite:///:matches.db:', echo=False)
-        Session = sessionmaker(bind=engine)
-        session = Session()
 
 
+    engine = create_engine(config.DATABASE_URL, echo=False)
+    Session = sessionmaker(bind=engine)
+    session = Session()
     url = 'https://api.sportradar.us/rugby/trial/v2/union/en/schedules/{0}/schedule.json?api_key={1}'.format(today.strftime("%Y-%m-%d"), config.API_KEY)
 
 
@@ -53,6 +49,7 @@ def main():
             matches = re.match(r'^([\d-]+)T([\d:]+).*', match["scheduled"])
 
             start_time = datetime.strptime(matches.group(1) + " " + matches.group(2), "%Y-%m-%d %H:%M:%S")
+            start_time = start_time + timedelta(hours=1) #Add one hour to get time to UTC
 
             game["start_time"] = start_time
 
@@ -78,9 +75,15 @@ def main():
                     print(bot.postTitle)
                     print(bot.postContent)
 
-                if bot.submit(config.SUBREDDIT):
-                    session.add(match)
-                    session.commit()
+                attempt = 1
+                while not bot.submit(config.SUBREDDIT) and attempt < 20:
+                    print("Submit attempt " + str(attempt))
+                    ++attempt
+                    time.sleep(200)
+
+                session.add(match)
+                session.commit()
+
 
             else:
                 print("Games already posted")

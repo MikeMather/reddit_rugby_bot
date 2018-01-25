@@ -10,6 +10,7 @@ class Config(object):
     PASSWORD = os.environ["REDDIT_PASSWORD"]
     CLIENT_ID = os.environ["CLIENT_ID"]
     SECRET_KEY = os.environ["SECRET_KEY"]
+    DATABASE_URL = os.environ["DATABASE_URL"]
 
 class ProductionConfig(Config):
     DEBUG = False
