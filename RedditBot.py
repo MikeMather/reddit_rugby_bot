@@ -35,7 +35,7 @@ Click [HERE](http://www.thetimezoneconverter.com/?t=""" + data["start_time"].str
 
 &nbsp;
 
-^(I am a bot. Bleep bloop)"""
+^(I am a bot. Message u/justdelighted for questions. Bleep bloop)"""
 
     def submit(self, subreddit):
 
