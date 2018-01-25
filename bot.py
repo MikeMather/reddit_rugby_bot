@@ -38,6 +38,9 @@ def main():
     r = requests.get(url)
     resp = r.json()
 
+    if not resp["sport_events"]:
+        print("No games today")
+
     for match in resp['sport_events']:
 
         game = {}
@@ -93,7 +96,7 @@ def main():
                 else:
                     print("Games already posted")
             else:
-                print("Game not within 3 hours. Trying agin in an hour")
+                print("Game found but not within 3 hours. Trying agin in an hour")
                 sys.stdout.flush()
 
 
