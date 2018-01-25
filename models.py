@@ -1,7 +1,9 @@
 from sqlalchemy import *
 from sqlalchemy.ext.declarative import declarative_base
+import os
 
 Base = declarative_base()
+
 
 class Match(Base):
     __tablename__ = 'matches'
@@ -24,5 +26,5 @@ class Match(Base):
                                                self.match_round,
                                                self.venue)
 
-engine = create_engine('postgresql:///matches')
+engine = create_engine(os.environ["DATABASE_URL"])
 Base.metadata.create_all(engine)
