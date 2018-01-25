@@ -40,6 +40,7 @@ def main():
 
     if not resp["sport_events"]:
         print("No games today")
+        sys.stdout.flush()
 
     for match in resp['sport_events']:
 
@@ -57,6 +58,7 @@ def main():
             diff = start_time - today
             diff = (diff.seconds/60)/60
 
+            #If within 3 hours
             if diff < 3:
 
                 game["start_time"] = start_time
