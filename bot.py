@@ -1,7 +1,7 @@
 import requests
 import pytz
 from datetime import datetime, timedelta
-import os
+import os, sys
 from config import *
 from models import Match
 from sqlalchemy import create_engine
@@ -94,6 +94,7 @@ def main():
                     print("Games already posted")
             else:
                 print("Game not within 3 hours. Trying agin in an hour")
+                sys.stdout.flush()
 
 
 
