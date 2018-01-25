@@ -25,11 +25,10 @@ class RedditBot(praw.Reddit):
 
 &nbsp;
 
-Venue: """ + data["venue"] + """
+**Venue**: """ + data["venue"] + """
 
-&nbsp;
 
-Start time: """ + data["start_time"].strftime("%H:%M") + """ UTC
+**Start time**: """ + data["start_time"].strftime("%H:%M") + """ UTC
 
 
 Click [HERE](http://www.thetimezoneconverter.com/?t=""" + data["start_time"].strftime("%H:%M") + """&tz=UTC&) to convert to your time.
