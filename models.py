@@ -26,5 +26,5 @@ class Match(Base):
                                                self.match_round,
                                                self.venue)
 
-engine = create_engine(os.environ["DATABASE_URL"])
-Base.metadata.create_all(engine)
+#engine = create_engine(os.environ["DATABASE_URL"])
+#Base.metadata.create_all(engine)
