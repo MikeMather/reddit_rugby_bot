@@ -23,7 +23,7 @@ def main():
 
     if DEV=="True":
         config = DevelopmentConfig()
-        today = datetime.strptime("2018-02-17 13:00", "%Y-%m-%d %H:%M")
+        today = datetime.strptime("2018-02-23 17:00", "%Y-%m-%d %H:%M")
     else:
         config = ProductionConfig()
         today = datetime.now()
