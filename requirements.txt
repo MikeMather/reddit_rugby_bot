@@ -14,5 +14,5 @@ pytz==2017.3
 requests==2.18.4
 SQLAlchemy==1.2.1
 update-checker==0.16
-urllib3==1.22
+urllib3==1.24.2
 Werkzeug==0.14.1
